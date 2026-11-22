@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie review sentiment</title>
+  <meta name="description" content="Analyze the sentiment of a movie review with a neural network.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="app">
+  <header class="masthead">
+    <h1>Movie review sentiment</h1>
+    <p>Write what you thought of a film. A recurrent neural network decides whether it reads as positive or negative.</p>
+  </header>
+  <div class="workspace">
+    <section class="writing" aria-label="Your review">
+      <label class="field-label" for="review">Your review</label>
+      <textarea id="review" rows="10" maxlength="20000" placeholder="The acting was wonderful, but the second half dragged on…"></textarea>
+      <div class="meta"><span id="wordCount">0 words</span><span>Ctrl + Enter to analyze</span></div>
+      <div class="actions">
+        <button type="button" id="analyze" class="btn btn-primary">Analyze review</button>
+        <button type="button" id="clear" class="btn">Clear</button>
+      </div>
+      <div class="samples">
+        <span class="samples-title">Try an example</span>
+        <button type="button" class="chip" data-sample="pos">Glowing review</button>
+        <button type="button" class="chip" data-sample="neg">Harsh review</button>
+        <button type="button" class="chip" data-sample="mix">Mixed review</button>
+      </div>
+    </section>
+    <section class="result" id="result" aria-label="Result" aria-live="polite">
+      <div class="verdict">
+        <p class="verdict-word empty" id="verdict">No review yet</p>
+        <p class="verdict-sub" id="verdictSub">Write a review or pick an example to see the result.</p>
+      </div>
+      <div class="gauge" id="gauge">
+        <div class="gauge-track"><span class="gauge-neg"></span><span class="gauge-pos"></span><span class="gauge-needle" id="needle" style="left:50%"></span></div>
+        <div class="gauge-labels"><span>Negative</span><span id="scoreText">–</span><span>Positive</span></div>
+      </div>
+      <h2>How the model read your review</h2>
+      <p class="words" id="words">The words will appear here.</p>
+      <p class="legend" id="legend" hidden>Words with a dotted underline are not in the model's vocabulary.</p>
+      <p class="note" id="note" hidden></p>
+      <p class="error" id="error" role="alert" hidden></p>
+    </section>
+  </div>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
